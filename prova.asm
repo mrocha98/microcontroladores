@@ -1,70 +1,70 @@
 ;---------------------------------------------------------------;
-;	PROGRAMA: FONTE				 				 				;
-;	AULA DE MICROCONTROLADOS I		 			 				;
-;						 						 				;
-;	DIGITADO POR: Matheus EM: 13/06/2019						;
-;						 						 				;
-;	Este arquivo È respons·vel por acender 4 LEDS dispostos na	;
-;	porta D conforme o sinal de um bot„o na porta B 	 		;
+;	PROGRAMA: FONTE				 				 				
+;	AULA DE MICROCONTROLADOS I		 			 				
+;						 						 				
+;	DIGITADO POR: Matheus EM: 13/06/2019						
+;						 						 			
+;	Este arquivo √© respons√°vel por acender 4 LEDS dispostos na
+;	porta D conforme o sinal de um bot√£o na porta B 	 		
 ;---------------------------------------------------------------;
 
 
 ;---------------------------------------------------------------;
-;			DEFINI«√O DO MICROCONTROLADOR USADO					;
+;			DEFINI√á√ÉO DO MICROCONTROLADOR USADO					
 ;---------------------------------------------------------------;
 		#include <p16f877A.inc>
 
 ;---------------------------------------------------------------;
-;			CONFIGURA«’ES DOS FUSÕVEIS							;
+;			CONFIGURA√á√ïES DOS FUS√çVEIS							
 ;---------------------------------------------------------------;
 
 		__CONFIG _CP_OFF & _CPD_OFF & _DEBUG_OFF & _LVP_OFF & _WRT_OFF & _BODEN_OFF & _PWRTE_OFF & _WDT_OFF & _HS_OSC
 
 ;---------------------------------------------------------------;
-;			DECLARA«√O DE VARI¡VEIS								;
+;			DECLARA√á√ÉO DE VARI√ÅVEIS								
 ;---------------------------------------------------------------;
 		T1	equ	1;.20
 		T2	equ 1;.30
 		T3	equ	1;.225
 ;---------------------------------------------------------------;
-;			MACROS												;
+;			MACROS												
 ;---------------------------------------------------------------;
 
 ;---------------------------------------------------------------;
-;			INICIO DAS INSTRU«’ES				 				;
+;			INICIO DAS INSTRU√á√ïES				 				
 ;---------------------------------------------------------------;
-		org 0x00 ;organize apartir do endereÁo 0
+		org 0x00 ;organize apartir do endere√ßo 0
 		goto INICIO
 
 ;---------------------------------------------------------------;
-;			ROTINA DE INTERRUP«√O								;
+;			ROTINA DE INTERRUP√á√ÉO								
 ;---------------------------------------------------------------;
 
 ;---------------------------------------------------------------;
-;			CONFIGURA«’ES INICIAIS DO PIC						;
+;			CONFIGURA√á√ïES INICIAIS DO PIC						
 ;---------------------------------------------------------------;
 INICIO:	bcf STATUS, .7	; IRP = 0
 		bcf STATUS, .6	; RP1 = 0
 		bsf STATUS, .5	; RP0 = 1 (foi pro banco 1)
 
-		bsf TRISB,	.6	; RB6 È entrada
+		bsf TRISB,	.6	; RB6 √© entrada
 
-		bcf TRISD,  .2	; RD2 È saÌda
-		bcf TRISD,  .3	; RD3 È saÌda
-		bcf TRISD,  .4	; RD4 È saÌda
-		bcf TRISD,  .5	; RD5 È saÌda
+		bcf TRISD,  .2	; RD2 √© sa√≠da
+		bcf TRISD,  .3	; RD3 √© sa√≠da
+		bcf TRISD,  .4	; RD4 √© sa√≠da
+		bcf TRISD,  .5	; RD5 √© sa√≠da
 		
 		bcf STATUS, .5	; Voltando pro banco 0
 
 ;---------------------------------------------------------------;
-;			ROTINA PRINCIPAL									;
+;			ROTINA PRINCIPAL									
 ;---------------------------------------------------------------;
 MAIN:
 		call CHECA_BOTAO
 		goto MAIN		
 
 ;---------------------------------------------------------------;
-;			SUBROTINAS USADAS									;
+;			SUBROTINAS USADAS									
 ;---------------------------------------------------------------;
 APAGA_LEDS:
 		clrf PORTD
